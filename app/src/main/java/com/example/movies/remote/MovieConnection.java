@@ -11,6 +11,7 @@ public class MovieConnection implements MovieConnectionInterface
 {
     public static final String BASE_URL = "https://api.themoviedb.org/3/";
     public static final String API_KEY="a4e12a16d1df010db28f0f570554e512";
+    public static final String IMAGE_URL="https://image.tmdb.org/t/p/w500";
     public static final String YoutubeAPI_KEY = "AIzaSyCdAVi5z_C1WStIlghm-4GiaKJWpNguOAg";
     public static final String YoutubeBaseURL = "https://youtube.googleapis.com/youtube/v3/search?";
     private static MovieConnection movieConnection;
