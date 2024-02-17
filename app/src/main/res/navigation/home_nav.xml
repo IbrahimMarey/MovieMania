@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_fav" />
     <fragment
         android:id="@+id/search"
-        android:name="com.example.movies.home.search.SearchFragment"
+        android:name="com.example.movies.home.search.view.SearchFragment"
         android:label="Search"
         tools:layout="@layout/fragment_search" />
     <fragment
