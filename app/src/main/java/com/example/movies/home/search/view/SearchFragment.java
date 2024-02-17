@@ -1,4 +1,4 @@
-package com.example.movies.home.search;
+package com.example.movies.home.search.view;
 
 import android.os.Bundle;
 
