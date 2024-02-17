@@ -1,9 +1,7 @@
 package com.example.movies.models.repositories.movie;
 
-import android.content.Context;
 
 import androidx.lifecycle.LiveData;
-
 import com.example.movies.local.MovieLocalSource;
 import com.example.movies.models.pojos.MovieListPojo;
 import com.example.movies.models.pojos.MoviePlanPojo;
