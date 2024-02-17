@@ -1,0 +1,93 @@
+package com.example.movies.models.repositories.movie;
+
+import android.content.Context;
+
+import androidx.lifecycle.LiveData;
+
+import com.example.movies.local.MovieLocalSource;
+import com.example.movies.models.pojos.MovieListPojo;
+import com.example.movies.models.pojos.MoviePlanPojo;
+import com.example.movies.models.pojos.MoviePojo;
+import com.example.movies.remote.MovieConnection;
+
+import java.util.List;
+
+import io.reactivex.rxjava3.core.Single;
+
+public class MovieRepo implements MovieRepoInterface
+{
+    private MovieLocalSource movieLocalSource;
+    private MovieConnection movieConnection;
+    private static MovieRepo movieRepo;
+    private MovieRepo(Context context)
+    {
+        movieLocalSource = MovieLocalSource.getInstance(context);
+        movieConnection = MovieConnection.getInstance();
+    }
+    public static synchronized MovieRepo getInstance(Context context)
+    {
+        if (movieRepo == null)
+            movieRepo = new MovieRepo(context);
+        return movieRepo;
+    }
+
+    @Override
+    public Single<MovieListPojo> getTrending() {
+        return movieConnection.getTrending();
+    }
+
+    @Override
+    public Single<MovieListPojo> getUpComing() {
+        return movieConnection.getUpComing();
+    }
+
+    @Override
+    public Single<MovieListPojo> getPopular() {
+        return movieConnection.getPopular();
+    }
+
+    @Override
+    public Single<MovieListPojo> getTopRated() {
+        return movieConnection.getTopRated();
+    }
+
+    @Override
+    public Single<MovieListPojo> getDiscover() {
+        return movieConnection.getDiscover();
+    }
+
+    @Override
+    public Single<MovieListPojo> getSearch(String search) {
+        return movieConnection.getSearch(search);
+    }
+
+    @Override
+    public void insertMovieToFav(MoviePojo moviePojo) {
+        movieLocalSource.insertMovieToFav(moviePojo);
+    }
+
+    @Override
+    public void delMovieFromFav(MoviePojo moviePojo) {
+        movieLocalSource.delMovieFromFav(moviePojo);
+    }
+
+    @Override
+    public LiveData<List<MoviePojo>> getAllMoviesFav() {
+        return movieLocalSource.getAllMoviesFav();
+    }
+
+    @Override
+    public void insertMovieToWatching(MoviePlanPojo moviePojo) {
+        movieLocalSource.insertMovieToWatching(moviePojo);
+    }
+
+    @Override
+    public void delMovieFromWatching(MoviePlanPojo moviePojo) {
+        movieLocalSource.delMovieFromWatching(moviePojo);
+    }
+
+    @Override
+    public LiveData<List<MoviePlanPojo>> getAllMoviesWatching() {
+        return movieLocalSource.getAllMoviesWatching();
+    }
+}
