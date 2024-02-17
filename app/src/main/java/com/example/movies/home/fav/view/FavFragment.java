@@ -1,4 +1,4 @@
-package com.example.movies.home.fav;
+package com.example.movies.home.fav.view;
 
 import android.os.Bundle;
 

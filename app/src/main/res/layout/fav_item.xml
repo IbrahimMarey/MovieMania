@@ -35,7 +35,7 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/image_meal"
+                android:id="@+id/image_movie"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:elevation="2dp"
@@ -44,7 +44,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/name_meal"
+                android:id="@+id/name_movie"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -54,7 +54,7 @@
                 android:drawablePadding="12dp"
                 android:textColor="@color/black"
                 android:textSize="26sp"
-                app:layout_constraintTop_toBottomOf="@id/image_meal"
+                app:layout_constraintTop_toBottomOf="@id/image_movie"
                 app:layout_constraintStart_toStartOf="parent"
                 />
 
