@@ -19,15 +19,15 @@ public class MovieRepo implements MovieRepoInterface
     private MovieLocalSource movieLocalSource;
     private MovieConnection movieConnection;
     private static MovieRepo movieRepo;
-    private MovieRepo(Context context)
+    private MovieRepo(MovieLocalSource movieLocalSource,MovieConnection movieConnection)
     {
-        movieLocalSource = MovieLocalSource.getInstance(context);
-        movieConnection = MovieConnection.getInstance();
+        this.movieLocalSource = movieLocalSource;
+        this.movieConnection = movieConnection;
     }
-    public static synchronized MovieRepo getInstance(Context context)
+    public static synchronized MovieRepo getInstance(MovieLocalSource movieLocalSource,MovieConnection movieConnection)
     {
         if (movieRepo == null)
-            movieRepo = new MovieRepo(context);
+            movieRepo = new MovieRepo(movieLocalSource,movieConnection);
         return movieRepo;
     }
 
