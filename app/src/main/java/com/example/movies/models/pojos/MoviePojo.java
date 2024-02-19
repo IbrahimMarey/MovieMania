@@ -4,9 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "favmovie")
-public class MoviePojo
-{
+public class MoviePojo implements Serializable {
     @PrimaryKey
     @NonNull
     private long id ;

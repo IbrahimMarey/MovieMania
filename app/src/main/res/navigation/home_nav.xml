@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/home"
-        android:name="com.example.movies.home.home.HomeFragment"
+        android:name="com.example.movies.home.home.view.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home" />
 </navigation>
