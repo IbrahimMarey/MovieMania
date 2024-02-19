@@ -15,7 +15,7 @@
         android:id="@+id/constraint">
         <ImageView
             android:id="@+id/imageViewHomeImage"
-            android:layout_width="170dp"
+            android:layout_width="140dp"
             android:layout_height="200dp"
             android:scaleType="fitXY"
             android:src="@drawable/poster"
