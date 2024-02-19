@@ -5,6 +5,4 @@ import com.example.movies.models.pojos.MoviePojo;
 
 public interface OnClickFavListener {
     void onItemClick(MoviePojo movieItem);
-
-    void onDetailsItemClick(MoviePojo movieItem);
 }

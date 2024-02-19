@@ -9,6 +9,5 @@ import java.util.List;
 public interface FavView {
     public void showData(LiveData<List<MoviePojo>> allMovies);
     public void showErrorMsg(String error);
-    public void deleteMeals(MoviePojo moviePojo);
-    void afterRemove();
+    public void deleteMovie(MoviePojo moviePojo);
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.movies.R;
 import com.example.movies.models.pojos.MoviePojo;
+import com.example.movies.remote.MovieConnection;
 
 import java.util.List;
 
@@ -40,13 +42,11 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull FavViewHolder holder, int position) {
-        holder.name.setText(moviePojoList.get(position).getTitle());
-
 
         Glide.with(context)
-                .load(moviePojoList.get(position).getPoster_path())
+                .load(MovieConnection.IMAGE_URL + moviePojoList.get(position).getPoster_path())
                 .centerCrop()
-                .placeholder(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.poster)
                 .into(holder.photo);
 
         holder.favBtn.setOnClickListener(new View.OnClickListener() {
@@ -55,12 +55,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
                 listener.onItemClick(moviePojoList.get(position));
             }
         });
-        holder.itemConstraint.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.onDetailsItemClick(moviePojoList.get(position));
-            }
-        });
+
     }
 
     @Override
@@ -76,8 +71,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
     public static class FavViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView photo;
-        private TextView name;
-        private ImageView favBtn;
+        private Button favBtn;
 
         private ConstraintLayout itemConstraint;
         private View view;
@@ -89,9 +83,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
 
             view = itemView;
             photo = itemView.findViewById(R.id.image_movie);
-            name = itemView.findViewById(R.id.name_movie);
-            favBtn = itemView.findViewById(R.id.fav_btn_home);
-            itemConstraint = view.findViewById(R.id.item_constrian);
+            favBtn = itemView.findViewById(R.id.name_movie);
         }
     }
 }

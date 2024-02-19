@@ -23,37 +23,27 @@
             android:paddingBottom="16dp"
             >
 
-            <ImageButton
-                android:id="@+id/fav_btn_home"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="4dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/favorite"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/image_movie"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:elevation="2dp"
-                android:src="@drawable/ic_launcher_foreground"
+                android:src="@drawable/poster"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <Button
                 android:id="@+id/name_movie"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginStart="25dp"
-                android:text="Movie Name"
+                android:text="Remove"
                 android:textStyle="bold"
                 android:drawablePadding="12dp"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="26sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/image_movie"
                 app:layout_constraintStart_toStartOf="parent"
                 />
