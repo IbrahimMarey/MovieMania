@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.movies.R;
 import com.example.movies.home.fav.presenter.FavPresenterImp;
+import com.example.movies.home.search.view.SearchFragmentDirections;
 import com.example.movies.local.MovieLocalSource;
 import com.example.movies.models.pojos.MoviePojo;
 import com.example.movies.models.repositories.movie.MovieRepo;
@@ -26,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class FavFragment extends Fragment implements FavView , OnClickFavListener{
+public class FavFragment extends Fragment implements FavView , OnClickFavListener,OnDetailsListener{
 
     private View view;
 
@@ -53,7 +55,7 @@ public class FavFragment extends Fragment implements FavView , OnClickFavListene
 
         layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
-        favAdapter = new FavAdapter(getContext(), new ArrayList<>(), this);
+        favAdapter = new FavAdapter(getContext(), new ArrayList<>(), this,this);
         presenter =new FavPresenterImp(this,
                 MovieRepo.getInstance(
                         MovieLocalSource.getInstance(getContext()),
@@ -99,4 +101,9 @@ public class FavFragment extends Fragment implements FavView , OnClickFavListene
         deleteMovie(movieItem);
     }
 
+    @Override
+    public void onDetailsListener(MoviePojo pojo) {
+        FavFragmentDirections.ActionFavToMovieDetailsFragment action = FavFragmentDirections.actionFavToMovieDetailsFragment(pojo);
+        Navigation.findNavController(recyclerView).navigate(action);
+    }
 }

@@ -24,11 +24,13 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
     private Context context;
     private List<MoviePojo> moviePojoList;
     private OnClickFavListener listener;
+    private OnDetailsListener onDetailsListener;
 
-    public FavAdapter(Context context, List<MoviePojo> moviePojoList, OnClickFavListener listener) {
+    public FavAdapter(Context context, List<MoviePojo> moviePojoList, OnClickFavListener listener,OnDetailsListener onDetailsListener) {
         this.context = context;
         this.moviePojoList = moviePojoList;
         this.listener = listener;
+        this.onDetailsListener=onDetailsListener;
 
     }
 
@@ -42,7 +44,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull FavViewHolder holder, int position) {
-
+        MoviePojo pojo = moviePojoList.get(position);
         Glide.with(context)
                 .load(MovieConnection.IMAGE_URL + moviePojoList.get(position).getPoster_path())
                 .centerCrop()
@@ -52,10 +54,15 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
         holder.favBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onItemClick(moviePojoList.get(position));
+                listener.onItemClick(pojo);
             }
         });
-
+        holder.itemConstraint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onDetailsListener.onDetailsListener(pojo);
+            }
+        });
     }
 
     @Override
@@ -82,6 +89,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
             super(itemView);
 
             view = itemView;
+            itemConstraint=itemView.findViewById(R.id.item_constrian);
             photo = itemView.findViewById(R.id.image_movie);
             favBtn = itemView.findViewById(R.id.name_movie);
         }
