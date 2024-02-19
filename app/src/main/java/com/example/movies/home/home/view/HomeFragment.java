@@ -25,7 +25,7 @@ import com.example.movies.remote.MovieConnection;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment implements HomeView ,OnClickListener{
+public class HomeFragment extends Fragment implements HomeView ,OnClickListener,onWatchListListener{
     HomePresenterInterface homePresenter;
     HomeAdapter trendingMovies,popularMovies,topRatedMovies,discoverMovies;
     RecyclerView recyclerView,recyclerViewPopular,recyclerViewTopRated,recyclerViewDiscover;
@@ -48,10 +48,11 @@ public class HomeFragment extends Fragment implements HomeView ,OnClickListener{
         recyclerViewTopRated =view.findViewById(R.id.recyclerViewTopRated);
         recyclerViewDiscover=view.findViewById(R.id.recyclerViewDiscover);
         homePresenter = HomePresenter.getInstance(MovieRepo.getInstance(MovieLocalSource.getInstance(this.getContext()), MovieConnection.getInstance()),this);
-        trendingMovies = new HomeAdapter(this.getContext(), new ArrayList<>(),this);
-        popularMovies = new HomeAdapter(this.getContext(),new ArrayList<>(),this);
-        topRatedMovies = new HomeAdapter(this.getContext(),new ArrayList<>(),this);
-        discoverMovies = new HomeAdapter(this.getContext(),new ArrayList<>(),this);
+        trendingMovies =
+                new HomeAdapter(this.getContext(), new ArrayList<>(),this::onClickListener,this::onWatch);
+        popularMovies = new HomeAdapter(this.getContext(),new ArrayList<>(),this::onClickListener,this::onWatch);
+        topRatedMovies = new HomeAdapter(this.getContext(),new ArrayList<>(),this::onClickListener,this::onWatch);
+        discoverMovies = new HomeAdapter(this.getContext(),new ArrayList<>(),this::onClickListener,this::onWatch);
 
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -113,5 +114,10 @@ public class HomeFragment extends Fragment implements HomeView ,OnClickListener{
     @Override
     public void onClickListener(MoviePojo pojo) {
         Toast.makeText(getContext(), "Here to go to details Movie Name is :" +pojo.getTitle(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onWatch(MoviePojo pojo) {
+        homePresenter.addToWatchList(pojo);
     }
 }

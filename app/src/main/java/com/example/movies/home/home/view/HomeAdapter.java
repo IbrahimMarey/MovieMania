@@ -4,9 +4,12 @@ package com.example.movies.home.home.view;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -23,12 +26,14 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     List<MoviePojo> movies;
     Context context;
     OnClickListener _listener;
+    onWatchListListener _watcher;
 
 
-    public HomeAdapter(Context _context, List<MoviePojo> movies, OnClickListener _listener) {
+    public HomeAdapter(Context _context, List<MoviePojo> movies, OnClickListener _listener,onWatchListListener _watcher) {
         this.movies = movies;
         this.context = _context;
-        this._listener=_listener;
+        this._listener = _listener;
+        this._watcher=_watcher;
     }
 
     @NonNull
@@ -49,6 +54,26 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             @Override
             public void onClick(View view) {
                 _listener.onClickListener(pojo);
+            }
+        });
+        holder.constraint.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                PopupMenu popupMenu = new PopupMenu(context, view);
+                popupMenu.getMenuInflater().inflate(R.menu.watchlist, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        if (menuItem.getItemId() == R.id.addToWatchlist) {
+                            _watcher.onWatch(pojo);
+                            Toast.makeText(context, "Added to Watchlist", Toast.LENGTH_SHORT).show();
+                            return true;
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
+                return true;
             }
         });
     }
