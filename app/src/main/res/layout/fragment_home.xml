@@ -35,7 +35,8 @@
             tools:itemCount="8"
             tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/movie_card"
-            tools:spanCount="2" />
+            tools:spanCount="2"
+            />
 
         <TextView
             android:id="@+id/popularMovies"
