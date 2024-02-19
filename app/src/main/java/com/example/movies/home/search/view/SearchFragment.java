@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +19,7 @@ import android.widget.EditText;
 
 import com.example.movies.R;
 import com.example.movies.home.home.view.HomeAdapter;
+import com.example.movies.home.home.view.HomeFragmentDirections;
 import com.example.movies.home.home.view.OnClickListener;
 import com.example.movies.home.home.view.onWatchListListener;
 import com.example.movies.home.search.presenter.SearchPresenter;
@@ -106,7 +108,9 @@ public class SearchFragment extends Fragment implements SearchFragmentInterface,
 
     @Override
     public void onClickListener(MoviePojo pojo) {
-        //Navigate to Movie Details
+        SearchFragmentDirections.ActionSearchToMovieDetailsFragment action =SearchFragmentDirections.actionSearchToMovieDetailsFragment(pojo);
+        Navigation.findNavController(recyclerView).navigate(action);
+        
     }
 
     @Override
