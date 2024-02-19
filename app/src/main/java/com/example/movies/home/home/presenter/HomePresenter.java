@@ -2,6 +2,7 @@ package com.example.movies.home.home.presenter;
 
 import com.example.movies.home.home.view.HomeView;
 import com.example.movies.models.pojos.MovieListPojo;
+import com.example.movies.models.pojos.MoviePojo;
 import com.example.movies.models.repositories.movie.MovieRepoInterface;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -115,5 +116,10 @@ public class HomePresenter implements HomePresenterInterface{
 
                     }
                 });
+    }
+
+    @Override
+    public void addToWatchList(MoviePojo pojo) {
+        _repo.insertMovieToFav(pojo);
     }
 }
