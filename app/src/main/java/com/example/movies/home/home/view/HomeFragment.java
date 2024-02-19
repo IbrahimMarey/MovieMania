@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -114,6 +115,8 @@ public class HomeFragment extends Fragment implements HomeView ,OnClickListener,
     @Override
     public void onClickListener(MoviePojo pojo) {
         Toast.makeText(getContext(), "Here to go to details Movie Name is :" +pojo.getTitle(), Toast.LENGTH_SHORT).show();
+        HomeFragmentDirections.ActionHomeToMovieDetailsFragment action = HomeFragmentDirections.actionHomeToMovieDetailsFragment(pojo);
+        Navigation.findNavController(recyclerView).navigate(action);
     }
 
     @Override
