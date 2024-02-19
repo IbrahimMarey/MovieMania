@@ -3,6 +3,7 @@ package com.example.movies.home.search.presenter;
 import com.example.movies.home.search.view.SearchFragment;
 import com.example.movies.home.search.view.SearchFragmentInterface;
 import com.example.movies.models.pojos.MovieListPojo;
+import com.example.movies.models.pojos.MoviePojo;
 import com.example.movies.models.repositories.movie.MovieRepo;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -43,4 +44,8 @@ public class SearchPresenter implements SearchPresenterInterface{
         });
 
     }
+    public void addToWatchList(MoviePojo pojo) {
+        movieRepo.insertMovieToFav(pojo);
+    }
+
 }

@@ -62,7 +62,7 @@ public class SearchFragment extends Fragment implements SearchFragmentInterface,
         constraintLayout.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
         searchAdapter = new HomeAdapter(this.getContext(),new ArrayList<>(),this::onClickListener,this::onWatch);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),3);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(searchAdapter);
         searchPresenterInterface = new SearchPresenter(this, MovieRepo.getInstance(MovieLocalSource.getInstance(getActivity()), MovieConnection.getInstance()));
@@ -112,5 +112,6 @@ public class SearchFragment extends Fragment implements SearchFragmentInterface,
     @Override
     public void onWatch(MoviePojo pojo) {
         //Add to favorite
+        searchPresenterInterface.addToWatchList(pojo);
     }
 }
