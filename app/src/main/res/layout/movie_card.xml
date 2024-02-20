@@ -18,7 +18,8 @@
             android:layout_width="140dp"
             android:layout_height="200dp"
             android:scaleType="fitXY"
-            android:src="@drawable/poster"
+            android:src="@drawable/video"
+            android:backgroundTint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

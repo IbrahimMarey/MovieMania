@@ -3,5 +3,18 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="golden">#ffcf40</color>
+    <color name="app">#008080</color>
 
 </resources>
+<!--
+Classic Red: #FF0000
+Golden Yellow: #FFD700
+Glamorous Purple: #800080
+Cinematic Blue: #0000FF
+Popcorn Yellow: #FFCC00
+Film Reel Silver: #C0C0C0
+Hollywood Pink: #FF69B4
+Retro Teal: #008080
+Dramatic Black: #000000
+Spotlight White: #FFFFFF
+-->

@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData;
 import com.example.movies.models.pojos.MovieListPojo;
 import com.example.movies.models.pojos.MoviePlanPojo;
 import com.example.movies.models.pojos.MoviePojo;
+import com.example.movies.views.movieDetails.view.IMovieDetailView;
 
 import java.util.List;
 
@@ -22,7 +23,8 @@ public interface MovieRepoInterface
     void delMovieFromFav(MoviePojo moviePojo);
     LiveData<List<MoviePojo>> getAllMoviesFav();
 
-    void insertMovieToWatching(MoviePlanPojo moviePojo);
-    void delMovieFromWatching(MoviePlanPojo moviePojo);
-    LiveData<List<MoviePlanPojo>> getAllMoviesWatching();
+    void insertMovieToWatching(MoviePojo moviePojo);
+    void delMovieFromWatching(MoviePojo moviePojo);
+    LiveData<List<MoviePojo>> getAllMoviesWatching();
+    void getVideo(String title, IMovieDetailView iMovieDetailView);
 }

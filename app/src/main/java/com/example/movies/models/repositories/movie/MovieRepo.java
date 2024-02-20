@@ -6,6 +6,7 @@ import com.example.movies.local.MovieLocalSource;
 import com.example.movies.models.pojos.MovieListPojo;
 import com.example.movies.models.pojos.MoviePlanPojo;
 import com.example.movies.models.pojos.MoviePojo;
+import com.example.movies.views.movieDetails.view.IMovieDetailView;
 import com.example.movies.remote.MovieConnection;
 
 import java.util.List;
@@ -75,17 +76,22 @@ public class MovieRepo implements MovieRepoInterface
     }
 
     @Override
-    public void insertMovieToWatching(MoviePlanPojo moviePojo) {
-        movieLocalSource.insertMovieToWatching(moviePojo);
+    public void insertMovieToWatching(MoviePojo moviePojo) {
+        movieLocalSource.insertMovieToFav(moviePojo);
     }
 
     @Override
-    public void delMovieFromWatching(MoviePlanPojo moviePojo) {
-        movieLocalSource.delMovieFromWatching(moviePojo);
+    public void delMovieFromWatching(MoviePojo moviePojo) {
+        movieLocalSource.delMovieFromFav(moviePojo);
     }
 
     @Override
-    public LiveData<List<MoviePlanPojo>> getAllMoviesWatching() {
-        return movieLocalSource.getAllMoviesWatching();
+    public LiveData<List<MoviePojo>> getAllMoviesWatching() {
+        return movieLocalSource.getAllMoviesFav();
+    }
+
+    @Override
+    public void getVideo(String title, IMovieDetailView iMovieDetailView) {
+        movieConnection.getMovie(title,iMovieDetailView);
     }
 }

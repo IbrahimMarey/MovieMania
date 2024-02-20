@@ -1,9 +1,23 @@
 package com.example.movies.remote;
 
+import com.example.movies.helpers.youtube.YoutubeSearchResponse;
 import com.example.movies.models.pojos.MovieListPojo;
+import com.example.movies.views.movieDetails.view.IMovieDetailView;
+import com.google.gson.Gson;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import io.reactivex.rxjava3.core.Single;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -62,5 +76,41 @@ public class MovieConnection implements MovieConnectionInterface
     @Override
     public Single<MovieListPojo> getSearch(String search) {
         return movieServices.getSearch(API_KEY,search);
+    }
+
+    public void getMovie(String title , IMovieDetailView iMovieDetailView) {
+        try {
+            String encodedQuery = URLEncoder.encode(title, StandardCharsets.UTF_8.toString());
+            String url = YoutubeBaseURL + "q=" + encodedQuery + "&key=" + YoutubeAPI_KEY;
+
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    try {
+                        String responseBody = Objects.requireNonNull(response.body()).string();
+                        YoutubeSearchResponse results = new Gson().fromJson(responseBody, YoutubeSearchResponse.class);
+                        if (results != null && results.items != null && !results.items.isEmpty()) {
+                            String videoId=results.items.get(0).id.videoId;
+                            iMovieDetailView.onSuccess(videoId);
+                        } else {
+//                            iMovieDetailView.showToast("No results found");
+                        }
+                    } catch (Exception e) {
+//                        iMovieDetailView.showToast(e.getMessage());
+                    }
+                }
+            });
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
