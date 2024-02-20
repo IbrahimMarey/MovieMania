@@ -1,4 +1,4 @@
-# Cinemate
+# MovieMania
 
 ## A Movie mobile application
 
