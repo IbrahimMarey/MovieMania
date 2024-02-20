@@ -1,57 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/meal_card_view"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:elevation="8dp"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="10dp"
+    >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_constrian"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:elevation="8dp"
-        app:cardUseCompatPadding="true"
-        app:cardCornerRadius="10dp"
-        android:layout_margin="15dp"
         >
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/item_constrian"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="16dp"
-            >
+        <LinearLayout
 
-            <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+            <LinearLayout
+                android:id="@+id/fav_linear_item"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="wrap_content">
+            <ImageView
                 android:id="@+id/image_movie"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="128dp"
+                android:layout_margin="8dp"
                 android:elevation="2dp"
-                android:src="@drawable/poster"
+                android:src="@drawable/video"
+                android:backgroundTint="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/name_movie"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/fav_movie_title"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="25dp"
-                android:text="Remove"
-                android:textStyle="bold"
-                android:drawablePadding="12dp"
-                android:textColor="@color/white"
-                android:textSize="26sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/image_movie"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="16dp"
                 />
-
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/del_item_fav"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_pouse"
+                />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

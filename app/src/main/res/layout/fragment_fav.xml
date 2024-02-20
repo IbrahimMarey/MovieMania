@@ -5,25 +5,43 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".home.favourite.view.FavouriteFragment">
+        tools:context=".views.favourite.view.FavouriteFragment">
+        <FrameLayout
+            android:id="@+id/lottie_fav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt"
+            >
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="360dp"
+                android:layout_height="520dp"
+                app:lottie_autoPlay="true"
+                android:layout_gravity="center"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/movie" />
+        </FrameLayout>
         <TextView
             android:id="@+id/txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="15dp"
-            android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="24sp"
             android:text="Wish List of Movies"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             />
 
         <androidx.recyclerview.widget.RecyclerView
