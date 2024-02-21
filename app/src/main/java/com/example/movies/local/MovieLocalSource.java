@@ -75,4 +75,10 @@ public class MovieLocalSource implements LocalSourceInterface
     public LiveData<List<MoviePlanPojo>> getAllMoviesWatching() {
         return movieDao.getAllMoviesWatching();
     }
+
+    @Override
+    public LiveData<MoviePojo> getMovieFromFavById(String id) {
+        long ID = Long.parseLong(id);
+        return movieDao.getMovieFromFavById(ID);
+    }
 }

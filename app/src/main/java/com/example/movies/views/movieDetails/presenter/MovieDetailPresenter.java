@@ -1,5 +1,7 @@
 package com.example.movies.views.movieDetails.presenter;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.movies.models.pojos.MoviePlanPojo;
 import com.example.movies.models.pojos.MoviePojo;
 import com.example.movies.models.repositories.movie.MovieRepoInterface;
@@ -30,6 +32,11 @@ public class MovieDetailPresenter implements IMovieDetailPresenter {
     @Override
     public void getVideo(String title ,IMovieDetailView iMovieDetailView) {
         repo.getVideo(title,iMovieDetailView);
+    }
+
+    @Override
+    public LiveData<MoviePojo> getMovieFromFavById(String id) {
+        return repo.getMovieFromFavById(id);
     }
 
     private MoviePlanPojo pojoToPlanPojo(MoviePojo pojo){

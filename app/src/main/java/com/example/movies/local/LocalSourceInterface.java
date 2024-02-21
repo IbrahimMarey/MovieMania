@@ -20,4 +20,6 @@ public interface LocalSourceInterface
     void insertMovieToWatching(MoviePlanPojo moviePojo);
     void delMovieFromWatching(MoviePlanPojo moviePojo);
     LiveData<List<MoviePlanPojo>> getAllMoviesWatching();
+
+    LiveData<MoviePojo> getMovieFromFavById(String id);
 }
