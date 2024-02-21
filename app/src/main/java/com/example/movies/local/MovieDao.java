@@ -22,6 +22,8 @@ public interface MovieDao
     @Query("SELECT * FROM favmovie")
     LiveData<List<MoviePojo>> getAllMoviesFav();
 
+    @Query("SELECT * FROM favmovie where id =:id")
+    LiveData<MoviePojo> getMovieFromFavById(long id );
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertMovieToWatching(MoviePlanPojo moviePojo);
     @Delete

@@ -14,7 +14,7 @@
     <item
         android:id="@+id/fav"
         android:title="Favourite"
-        android:icon="@drawable/favorite" />
+        android:icon="@drawable/ic_not_fav" />
 
 
 </menu>

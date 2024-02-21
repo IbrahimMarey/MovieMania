@@ -27,4 +27,5 @@ public interface MovieRepoInterface
     void delMovieFromWatching(MoviePojo moviePojo);
     LiveData<List<MoviePojo>> getAllMoviesWatching();
     void getVideo(String title, IMovieDetailView iMovieDetailView);
+    LiveData<MoviePojo> getMovieFromFavById(String id);
 }

@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -68,18 +69,34 @@ boolean toWatch = false ;
                if(!toWatch){
                    toWatch = true ;
                    presenter.addToWatchList(moviePojo);
-                   addToWatchBtn.setImageResource(R.drawable.bookmark_black);
+                   addToWatchBtn.setImageResource(R.drawable.ic_fav);
 
                }else{
                    toWatch = false;
                     presenter.removeFromWatchList(moviePojo);
-                   addToWatchBtn.setImageResource(R.drawable.bookmark_white);
+                   addToWatchBtn.setImageResource(R.drawable.ic_not_fav);
                }
             }
         });
-
+        getMovieFromLocal(String.valueOf(moviePojo.getId()));
         presenter.getVideo(moviePojo.getTitle(),this);
         return view;
+    }
+
+
+    private void getMovieFromLocal(String id) {
+        presenter.getMovieFromFavById(id).observe(getViewLifecycleOwner(), new Observer<MoviePojo>() {
+            @Override
+            public void onChanged(MoviePojo moviePojo) {
+                if (moviePojo !=null) {
+                    toWatch = true;
+                    addToWatchBtn.setImageResource(R.drawable.ic_fav);
+
+                }else {
+                    toWatch = false;
+                }
+            }
+        });
     }
     public String getVideoLink(String link) {
         if (link != null && link.split("\\?v=").length > 1)

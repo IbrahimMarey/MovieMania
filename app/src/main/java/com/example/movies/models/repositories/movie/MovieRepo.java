@@ -94,4 +94,9 @@ public class MovieRepo implements MovieRepoInterface
     public void getVideo(String title, IMovieDetailView iMovieDetailView) {
         movieConnection.getMovie(title,iMovieDetailView);
     }
+
+    @Override
+    public LiveData<MoviePojo> getMovieFromFavById(String id) {
+        return movieLocalSource.getMovieFromFavById(id);
+    }
 }
