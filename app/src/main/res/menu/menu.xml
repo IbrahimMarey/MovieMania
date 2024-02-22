@@ -13,7 +13,7 @@
 
     <item
         android:id="@+id/fav"
-        android:title="Favourite"
+        android:title="Watch List"
         android:icon="@drawable/ic_not_fav" />
 
 
